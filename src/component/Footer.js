@@ -1,40 +1,41 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, View, Text, Button} from 'react-native';
 
-class Footer extends Component {
-    
-    prevButtonPressed() {
-
-    }
-
-    nextButtonPressed() {
-        
-    }
-    render() {
+function Footer () {
+    const [index, setIndex] = useState();
     return (
-       <View>
+       <View style={styles.footer}>
            <Button
-                onPress={this.prevButtonPressed.bind(this)}
+                onPress={() => {}}
                 title="<< Prev"
                 color="#841584"
                 style={styles.prevButton}
                 accessibilityLabel="Learn more about this purple button"
             />
             <Button
-                onPress={this.nextButtonPressed.bind(this)}
+                onPress={() => setIndex(index+1)}
                 title="Next >>"
                 color="#841584"
-                style={styles.nexButton}
+                style={styles.nextButton}
                 accessibilityLabel="Learn more about this purple button"
             />
        </View> 
     );
 }
-}
 
 
 const styles = StyleSheet.create({
+    footer: {
+        // flex:1,
+        flexDirection: 'row',
+        backgroundColor: 'lightblue',
+        justifyContent: 'space-between',
+        marginBottom: 40
+      },
     prevButton: {
+        
+    },
+    nextButton: {
         
     }
 })

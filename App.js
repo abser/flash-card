@@ -1,19 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Card  from './Card';
-import Footer from './Footer';
+import Card from './src/component/Card';
+import Footer from './src/component/Footer';
+import Header from './src/component/Header';
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Flash Card </Text>
-        </View>
+        <Header />
         <View style={styles.body}>
-          <Card/>
+          <Card />
         </View>
-        <View style={styles.footer}>
-          <Footer/>
+        <View >
+          <Footer />
         </View>
       </View>
     );
@@ -25,26 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
-  header: {
-    height:60,
-    backgroundColor: 'lightblue',
-    alignItems: 'flex-start',
-    color: 'red',
-    marginTop: 40
-  },
-  headerText: {
-    fontSize:18,
-    color: 'black',
-    fontWeight: 'bold'
-  },
   body: {
-    flex:4
-  },
-  footer: {
-    flex:1,
-    flexDirection: 'row',
-    backgroundColor: 'lightblue',
-    marginBottom: 40
+    flex: 4
   }
-
 });
