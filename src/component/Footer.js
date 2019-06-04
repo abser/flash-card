@@ -1,19 +1,23 @@
-import React, {useState} from 'react';
+import React, {useReducer} from 'react';
 import { StyleSheet, View, Text, Button} from 'react-native';
+import {reducer} from '../reducer';
+
+const initialState = {index: 0};
 
 function Footer () {
-    const [index, setIndex] = useState();
+    const [state, dispatch] = useReducer(reducer, initialState);
+  
     return (
        <View style={styles.footer}>
            <Button
-                onPress={() => {}}
+                onPress={() => dispatch({type: 'prev'})}
                 title="<< Prev"
                 color="#841584"
                 style={styles.prevButton}
                 accessibilityLabel="Learn more about this purple button"
             />
             <Button
-                onPress={() => setIndex(index+1)}
+                onPress={() => dispatch({type: 'next'})}
                 title="Next >>"
                 color="#841584"
                 style={styles.nextButton}

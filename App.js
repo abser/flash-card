@@ -3,9 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import Card from './src/component/Card';
 import Footer from './src/component/Footer';
 import Header from './src/component/Header';
-export default class App extends React.Component {
-  render() {
-    return (
+
+export default function App() {
+  return (
       <View style={styles.container}>
         <Header />
         <View style={styles.body}>
@@ -15,8 +15,7 @@ export default class App extends React.Component {
           <Footer />
         </View>
       </View>
-    );
-  }
+  );
 }
 
 const styles = StyleSheet.create({
