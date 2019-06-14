@@ -14,9 +14,9 @@ function Card () {
     useEffect(() => {
         getHadith().then(res => {
         if(res.length > 0) {
-            // setHadiths(res);
-            // setHadith(res[0][`hadith_${config.DEFAULT_LANG}`]);
-            // setIndex(0); 
+            setHadiths(res);
+            setHadith(res[0][`hadith_${config.DEFAULT_LANG}`]);
+            setIndex(0); 
         } else {
             setMessage("No data found!")
         }
