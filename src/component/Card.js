@@ -9,7 +9,7 @@ function Card (props) {
     return (
        <ScrollView>
            <Text style={styles.card}>
-               {hadith}
+             Hadith:  {hadith}
            </Text>
        </ScrollView> 
     );

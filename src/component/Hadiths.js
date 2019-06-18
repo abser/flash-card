@@ -15,7 +15,6 @@ function Hadiths () {
         if(res.length > 0) {
             setHadiths(res);
             setIndex(0); 
-            console.log(res)
         } else {
             setMessage("No data found!")
         }
@@ -26,8 +25,8 @@ function Hadiths () {
 
     return (
       <View>
-          <Card />
-          <Text>{message}</Text>
+          <Card/>
+          <Text>{hadiths? hadiths[0]['hadith_bn'] : null}</Text>
       </View> 
     );
 }
