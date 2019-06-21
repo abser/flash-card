@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {getHadith} from '../service/Api'
-import Card from './Card';
+import CardNav from './CardNav';
 
 function Hadiths () {
     const [hadiths, setHadiths] = useState(null);
@@ -24,8 +24,8 @@ function Hadiths () {
 
     return (
       <View>
-          <Card/>
-          <Text>{hadiths? hadiths[0]['hadith_bn'] : null}</Text>
+          <CardNav hadiths={hadiths? hadiths : null}/>
+          {/* <Text>{hadiths? hadiths[0]['hadith_bn'] : null}</Text> */}
       </View> 
     );
 }

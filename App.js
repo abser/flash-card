@@ -11,9 +11,6 @@ function App() {
         <View style={styles.body}>
           <Hadiths />
         </View>
-        <View >
-          <Footer />
-        </View>
       </View>
   );
 }
