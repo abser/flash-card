@@ -3,7 +3,6 @@ import {StyleSheet, View, Text} from 'react-native';
 import {getHadith} from '../service/Api'
 import Card from './Card';
 
-
 function Hadiths () {
     const [hadiths, setHadiths] = useState(null);
     const [index, setIndex] = useState(null);
