@@ -32,6 +32,9 @@ function CardNav (props) {
     return (
        <ScrollView>
            <Text style={styles.card}>
+             {hadiths? hadiths[state.index][`hadith_ar`] : 'More hadith coming soon!'}
+           </Text>
+           <Text style={styles.card}>
              {hadiths? hadiths[state.index][`hadith_${config.DEFAULT_LANG}`] : 'More hadith coming soon!'}
            </Text>
            {navigator()}
