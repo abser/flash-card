@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {getHadith} from '../service/Api'
+import {getHadithByBookCategory} from '../service/Api'
 import CardNav from './CardNav';
 
 function Hadiths () {
@@ -10,7 +10,7 @@ function Hadiths () {
 
 
     useEffect(() => {
-        getHadith().then(res => {
+        getHadithByBookCategory().then(res => {
         if(res.length > 0) {
             setHadiths(res);
             setIndex(0); 

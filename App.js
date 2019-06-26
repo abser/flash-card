@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Hadiths from './src/component/Hadiths';
-import Footer from './src/component/Footer';
 import Header from './src/component/Header';
 
 function App() {
