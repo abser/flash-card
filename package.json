@@ -7,6 +7,9 @@
     "eject": "expo eject",
     "test": "jest"
   },
+  "jest": {
+    "preset": "react-native"
+  },
   "dependencies": {
     "aws-sdk": "^2.478.0",
     "expo": "^33.0.0",
