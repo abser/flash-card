@@ -32,6 +32,7 @@ async function getCategory() {
             Bucket: config.AWS_S3_BUCKET,
             Key: config.CATEGORY_FILE
         } 
+        console.log(bucketParams)
         const data = await s3.getObject(bucketParams).promise();
         console.log(data.Body.toString())
         return JSON.parse(data.Body.toString('utf-8'));
@@ -48,7 +49,7 @@ async function getHadithByBookCategory(book=1, category=1) {
             Key: `${book}-${category}.json`
         } 
         const data = await s3.getObject(bucketParams).promise();
-        console.log(data.Body.toString())
+        // console.log(data.Body.toString())
         return JSON.parse(data.Body.toString('utf-8'));
     } catch (err) {
         console.log(err);
