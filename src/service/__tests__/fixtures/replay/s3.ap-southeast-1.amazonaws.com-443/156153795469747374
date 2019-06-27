@@ -1,0 +1,17 @@
+OPTIONS /dristi.app-data/books.json
+host: s3.ap-southeast-1.amazonaws.com
+
+HTTP/1.1 200 OK
+x-amz-id-2: 5jlu2pRUu7BVE18m3b9mjwVZeq6mG5fCuiwS1dml5t9vTV6ySuyCIbqhG4GTx8ECH3Tljm0652E=
+x-amz-request-id: 9CE0D98E77341B3C
+date: Wed, 26 Jun 2019 08:32:35 GMT
+access-control-allow-origin: *
+access-control-allow-methods: HEAD, GET, PUT, POST, DELETE
+access-control-allow-headers: x-amz-user-agent, x-amz-content-sha256, x-amz-date, authorization
+access-control-expose-headers: x-amz-server-side-encryption, x-amz-request-id, x-amz-id-2, ETag
+access-control-max-age: 3000
+vary: Origin, Access-Control-Request-Headers, Access-Control-Request-Method
+content-length: 0
+server: AmazonS3
+connection: close
+
