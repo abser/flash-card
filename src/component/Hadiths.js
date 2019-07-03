@@ -11,8 +11,9 @@ function Hadiths () {
 
     useEffect(() => {
         getHadithByBookCategory().then(res => {
-        if(res.length > 0) {
-            setHadiths(res);
+            console.log(res);
+            if(res.hadiths && res.hadiths.length > 0) {
+            setHadiths(res.hadiths);
             setIndex(0); 
         } else {
             setMessage("No data found!")

@@ -1,16 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Hadiths from './src/component/Hadiths';
 import Header from './src/component/Header';
+import LoadingScreen from './src/component/LoadingScreen'
 
 function App() {
   return (
-      <View style={styles.container}>
-        <Header />
+    <SafeAreaView  style={styles.container}>
+      {/* <View style={styles.container}>
+         <Header />
         <View style={styles.body}>
           <Hadiths />
-        </View>
-      </View>
+       </View>
+       </View> */}
+      <LoadingScreen/>
+    </SafeAreaView>  
   );
 }
 
