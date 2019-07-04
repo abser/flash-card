@@ -40,7 +40,7 @@ async function getCategory() {
     }
 }
 
-const getHadithByBookCategory = async (book = 1, category = 1) => {
+const getHadithByBookCategory = async (book = 1, category = 1, loadDataOnly = false) => {
     try {
         const key = `${book}-${category}.json`;
         let hadiths = null;
@@ -48,7 +48,7 @@ const getHadithByBookCategory = async (book = 1, category = 1) => {
         
         if (hadithsInCache) {
             if (new Date(hadithsInCache.expiry) > (new Date())) {
-                return hadithsInCache
+                return loadDataOnly ? true : hadithsInCache;
             }
             else {
                 // clear the storage
@@ -61,16 +61,16 @@ const getHadithByBookCategory = async (book = 1, category = 1) => {
             Bucket: config.AWS_S3_BUCKET,
             Key: key
         }
+
         const s3Data = await s3.getObject(bucketParams).promise();
-        // Save data to storage
-        hadiths = s3Data.Body.toString('utf-8');
+        hadiths = s3Data.Body.toString('utf-8');    // S3 buffer data to string
         hadiths = JSON.parse(hadiths)
         let data = {
             hadiths: hadiths,
             expiry: getExpiry()
         }
         await setDataToStorage(key, JSON.stringify(data));
-        return data;
+        return loadDataOnly ? true : data;
     } catch (err) {
         console.log(err);
     }

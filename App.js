@@ -1,22 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import Hadiths from './src/component/Hadiths';
-import Header from './src/component/Header';
-import LoadingScreen from './src/component/LoadingScreen'
+import LoadingScreen from './src/component/LoadingScreen';
+import Home from './src/component/Home';
 
-function App() {
-  return (
-    <SafeAreaView  style={styles.container}>
-      {/* <View style={styles.container}>
-         <Header />
-        <View style={styles.body}>
-          <Hadiths />
-       </View>
-       </View> */}
-      <LoadingScreen/>
-    </SafeAreaView>  
-  );
-}
+import {createStackNavigator, createAppContainer} from 'react-navigation';
+
+const MainNavigator = createStackNavigator({
+  LoadingScreen: {screen: LoadingScreen},
+  Home: {screen: Home}
+});
+const App = createAppContainer(MainNavigator);
+
+// function App() {
+//   return (
+//     <SafeAreaView  style={styles.container}>
+//       <LoadingScreen/>
+//     </SafeAreaView>  
+//   );
+// }
 
 const styles = StyleSheet.create({
   container: {
