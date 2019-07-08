@@ -6,8 +6,8 @@ const Books = (props) => {
     const bookList = [];
     let bookUI = null;
     
-    const onPressAction = () => {
-        props.navigation.push('Hadiths');
+    const onPressAction = (bookid) => {
+        props.navigation.push('Hadiths', {bookid});
     }
 
     if (books.data.length > 0) {
@@ -17,11 +17,11 @@ const Books = (props) => {
                 key={book.id}
                 style={styles.bookBtn}
                 title={book.bookname}
-                onPress={onPressAction}
+                onPress={() => onPressAction(book.id)}
             />);
         });
     }
-    
+
     return (
         <View>
             {bookList}

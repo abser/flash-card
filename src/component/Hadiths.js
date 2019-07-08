@@ -4,13 +4,14 @@ import { getDataFromStorage } from '../service/Api'
 import CardNav from './CardNav';
 
 function Hadiths(props) {
-    // console.log(props);
+    const bookid = props.navigation.getParam('bookid',1);
+    const catid = props.navigation.getParam('catid',1);
     const [hadiths, setHadiths] = useState(null);
-    // const [message, setMessage] = useState(null);
-    const [key, setKey] = useState('1-1.json');
+    const [key, setKey] = useState(`${bookid}-${catid}.json`);
 
     useEffect(() => {
         getDataFromStorage(key).then(defaultHadiths => {
+            console.log(defaultHadiths.data.length)
             defaultHadiths.data.length > 0 ? setHadiths(defaultHadiths.data) : null;
         }).catch(err => {
             console.log(err);
@@ -20,7 +21,9 @@ function Hadiths(props) {
 
     return (
         <View>
-            <CardNav hadiths={hadiths ? hadiths : null} />
+            { hadiths ?
+            <CardNav hadiths={hadiths } />
+            : null }
         </View>
     );
 }

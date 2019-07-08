@@ -16,22 +16,24 @@ const LoadingScreen = (props) => {
             // await removeDataFromStorage('books.json');
             // await removeDataFromStorage('categories.json');
             // await removeDataFromStorage('1-1.json');
+
             books = await getDataFromStorage('books.json');
             categories = await getDataFromStorage('categories.json');
             hadiths = await getDataFromStorage('1-1.json');
+
             if (!(books && categories) || !hadiths) {
                 books = await loadDataFromS3AndPersist('books', 'books.json');
                 categories = await loadDataFromS3AndPersist('categories', 'categories.json');
                 hadiths = await loadDataFromS3AndPersist('hadiths', '1-1.json');
-                // console.log(books, categories, hadiths)
             }
-            // console.log(books, categories, hadiths)
+
             if (!books || !categories || !hadiths) {
                 setMsg('Something went wrong! Please check your connectivity!');
             } else {
-                setMsg('Loading complete 👏');
+                // setMsg('Loading complete 👏');
                 props.navigation.push('Home', { books });
             }
+            
         } catch (err) {
             console.log(err);
             setMsg('Something went wrong!');
@@ -40,7 +42,7 @@ const LoadingScreen = (props) => {
     }
     useEffect(() => {
         loadData()
-    })
+    }   )
 
     return (
         <ImageBackground
