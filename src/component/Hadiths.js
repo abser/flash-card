@@ -1,33 +1,27 @@
-import React, {useState, useEffect, useReducer} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {getHadithByBookCategory} from '../service/Api'
+import React, { useState, useEffect, useReducer } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { getDataFromStorage } from '../service/Api'
 import CardNav from './CardNav';
 
-function Hadiths () {
+function Hadiths(props) {
+    // console.log(props);
     const [hadiths, setHadiths] = useState(null);
-    const [index, setIndex] = useState(null);
-    const [message, setMessage] = useState(null);
-
+    // const [message, setMessage] = useState(null);
+    const [key, setKey] = useState('1-1.json');
 
     useEffect(() => {
-        getHadithByBookCategory().then(res => {
-            console.log(res);
-            if(res.hadiths && res.hadiths.length > 0) {
-            setHadiths(res.hadiths);
-            setIndex(0); 
-        } else {
-            setMessage("No data found!")
-        }
-        
+        getDataFromStorage(key).then(defaultHadiths => {
+            defaultHadiths.data.length > 0 ? setHadiths(defaultHadiths.data) : null;
+        }).catch(err => {
+            console.log(err);
         })
-    }, [])
-    
+    }, [key]);
+
 
     return (
-      <View>
-          <CardNav hadiths={hadiths? hadiths : null}/>
-          {/* <Text>{hadiths? hadiths[0]['hadith_bn'] : null}</Text> */}
-      </View> 
+        <View>
+            <CardNav hadiths={hadiths ? hadiths : null} />
+        </View>
     );
 }
 
@@ -35,6 +29,6 @@ const styles = StyleSheet.create({
     card: {
         padding: 2,
         fontSize: 16
-      }
+    }
 })
 export default Hadiths;

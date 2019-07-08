@@ -7,7 +7,7 @@ const initialState = {index: 0};
 
 function CardNav (props) {
     const {hadiths} = props;
-    let index = 0;
+    // const [index, setIndex] = useState(0);
     const [state, dispatch] = useReducer(reducer, initialState);
     function navigator () {    
         return (
