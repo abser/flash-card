@@ -31,7 +31,7 @@ const LoadingScreen = (props) => {
                 setMsg('Something went wrong! Please check your connectivity!');
             } else {
                 // setMsg('Loading complete 👏');
-                props.navigation.push('Home', { books });
+                props.navigation.navigate('Home', { books });
             }
             
         } catch (err) {

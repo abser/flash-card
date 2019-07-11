@@ -1,26 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import LoadingScreen from './src/component/LoadingScreen';
 import Home from './src/component/Home';
 import Hadiths from './src/component/Hadiths';
+import SideMenu from './src/component/SideMenu'
+import {createDrawerNavigator, createAppContainer, DrawerItems, SafeAreaView} from 'react-navigation';
 
-
-import {createStackNavigator, createAppContainer} from 'react-navigation';
-
-const MainNavigator = createStackNavigator({
+const MainNavigator = createDrawerNavigator({
   LoadingScreen: {screen: LoadingScreen},
   Home: {screen: Home},
   Hadiths: {screen: Hadiths}
-});
-const App = createAppContainer(MainNavigator);
+},{contentComponent:SideMenu});
 
-// function App() {
-//   return (
-//     <SafeAreaView  style={styles.container}>
-//       <LoadingScreen/>
-//     </SafeAreaView>  
-//   );
-// }
+const App = createAppContainer(MainNavigator);
 
 const styles = StyleSheet.create({
   container: {

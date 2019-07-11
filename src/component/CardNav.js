@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import { ScrollView, StyleSheet, View, Text, Button} from 'react-native';
+import { ScrollView,ImageBackground, StyleSheet, View, Text, Button} from 'react-native';
 import {reducer} from '../reducer';
 import {config} from '../../config';
 
@@ -30,15 +30,15 @@ function CardNav (props) {
         );
     }
     return (
-       <ScrollView>
-           {/* <Text style={styles.card}>
-             {hadiths? hadiths[state.index][`hadith_ar`] : 'More hadith coming soon!'}
-           </Text> */}
-           <Text style={styles.card}>
+          <ImageBackground
+            source={require('../../assets/loading-screen.png')}
+            style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={styles.card}>
              {hadiths? hadiths[state.index][`hadith_${config.DEFAULT_LANG}`] : 'More hadith coming soon!'}
            </Text>
+
            {navigator()}
-       </ScrollView> 
+        </ImageBackground>          
     );
 }
 

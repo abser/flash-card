@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native'
 import { withNavigation } from 'react-navigation';
 const Books = (props) => {
     const { books } = props;
     const bookList = [];
-    let bookUI = null;
-    
+   
     const onPressAction = (bookid) => {
-        props.navigation.push('Hadiths', {bookid});
+        props.navigation.navigate('Hadiths', {bookid});
     }
 
     if (books.data.length > 0) {

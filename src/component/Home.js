@@ -6,12 +6,15 @@ Home.navigationOptions = {
     title: 'Home',
     headerLeft: null
   };
+
 function Home(props) {
   const {navigation} = props;
+  navigation.toggleDrawer();
   return (
     <SafeAreaView  style={styles.container}>
         <View style={styles.body}>
           <Books books={navigation.getParam('books', {})}/>
+          <Text> My Saved</Text>
        </View>
     </SafeAreaView>  
   );
