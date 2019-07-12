@@ -9,11 +9,11 @@ Home.navigationOptions = {
 
 function Home(props) {
   const {navigation} = props;
-  navigation.toggleDrawer();
+  // navigation.openDrawer()     // Open ans show the drawer
   return (
     <SafeAreaView  style={styles.container}>
         <View style={styles.body}>
-          <Books books={navigation.getParam('books', {})}/>
+          <Books {...props} books={navigation.getParam('books', {})}/>
           <Text> My Saved</Text>
        </View>
     </SafeAreaView>  

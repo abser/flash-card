@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native'
 import { withNavigation } from 'react-navigation';
-const Books = (props) => {
+
+const BooksNav = (props) => {
     const { books } = props;
     const bookList = [];
    
-    const onPressAction = (bookid) => {
+    const openHadith = (bookid) => {
+        console.log("onPressAction:bookid", bookid)
         props.navigation.closeDrawer();
         props.navigation.navigate('Hadiths', {bookid});
     }
@@ -17,7 +19,7 @@ const Books = (props) => {
                 key={book.id}
                 style={styles.bookBtn}
                 title={book.bookname}
-                onPress={() => onPressAction(book.id)}
+                onPress={() => openHadith(book.id)}
             />);
         });
     }
@@ -36,4 +38,4 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     }
 });
-export default withNavigation(Books);
+export default withNavigation(BooksNav);

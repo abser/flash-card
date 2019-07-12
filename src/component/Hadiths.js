@@ -5,7 +5,7 @@ import CardNav from './CardNav';
 import SideMenu from './SideMenu';
 
 function Hadiths(props) {
-    const bookid = props.navigation.getParam('bookid',1);
+    const bookid = props.navigation.getParam('bookid');
     const catid = props.navigation.getParam('catid',1);
     const [hadiths, setHadiths] = useState(null);
     const [key, setKey] = useState(`${bookid}-${catid}.json`);
@@ -21,8 +21,7 @@ function Hadiths(props) {
 
     return (
         <View>
-            <SideMenu/>
-            { hadiths ?
+            { hadiths !== null ?
             <CardNav hadiths={hadiths } />
             : null }
         </View>
