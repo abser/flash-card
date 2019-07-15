@@ -11,7 +11,7 @@ function CardNav (props) {
     const [state, dispatch] = useReducer(reducer, initialState);
     function navigator () {    
         return (
-           <View style={styles.footer}>
+           <View style={styles.cardNav}>
                <Button
                     onPress={() => dispatch({type: 'prev', totalCount: hadiths.length})}
                     title="<< Prev"
@@ -32,8 +32,8 @@ function CardNav (props) {
     return (
           <ImageBackground
             source={require('../../assets/loading-screen.png')}
-            style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={styles.card}>
+            style={styles.cardBackGround}>
+            <Text style={styles.cardText}>
              {hadiths? hadiths[state.index][`hadith_${config.DEFAULT_LANG}`] : 'More hadith coming soon!'}
            </Text>
 
@@ -46,16 +46,23 @@ function CardNav (props) {
 
 
 const styles = StyleSheet.create({
-    card: {
+    cardBackGround: {
+        width: '100%', 
+        height: '100%', 
+        flexDirection:'column',
+        justifyContent: 'space-around'
+    },
+    cardText: {
         padding: 2,
-        fontSize: 16
+        fontSize: 18 
       },
-    footer: {
+    cardNav: {
         // flex:1,
         flexDirection: 'row',
         backgroundColor: 'lightblue',
-        justifyContent: 'space-between',
-        marginBottom: 40
+        alignItems:'stretch',
+        justifyContent:'space-between',
+        marginTop: 20,
       },
     prevButton: {
         

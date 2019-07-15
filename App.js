@@ -1,20 +1,24 @@
 import React from 'react';
-import { StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import LoadingScreen from './src/component/LoadingScreen';
 import Home from './src/component/Home';
 import Hadiths from './src/component/Hadiths';
 import SideMenu from './src/component/SideMenu'
-import {createDrawerNavigator, createAppContainer} from 'react-navigation';
+import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
 const MainNavigator = createDrawerNavigator({
-  LoadingScreen: {screen: LoadingScreen},
-  Home: {screen: Home},
-  Hadiths: {screen: Hadiths}
+  LoadingScreen: { screen: LoadingScreen },
+  Home: { screen: Home },
+  Hadiths: { screen: Hadiths }
 },
-{
-  contentComponent:SideMenu,
-  drawerBackgroundColor: '#82D1F3'
-});
+  {
+    contentComponent: SideMenu,
+    drawerBackgroundColor: '#444',
+    navigationOptions: {
+      drawerIcon: <MaterialIcons name='menu' size={32} color="green" />
+    }
+  });
 
 const App = createAppContainer(MainNavigator);
 

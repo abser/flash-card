@@ -1,41 +1,67 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native'
 import { withNavigation } from 'react-navigation';
+import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { config } from '../../config';
 
 const BooksNav = (props) => {
     const { books } = props;
     const bookList = [];
-   
-    const openHadith = (bookid) => {
-        console.log("onPressAction:bookid", bookid)
+
+
+    const openHadith = (bookId, catId) => {
+        console.log("onPressAction:bookid", bookId)
         props.navigation.closeDrawer();
-        props.navigation.navigate('Hadiths', {bookid});
+        props.navigation.navigate('Hadiths', { bookId, catId });
     }
 
     if (books.data.length > 0) {
-        // Create the book UI
         books.data.forEach(book => {
-            bookList.push(<Button
-                key={book.id}
-                style={styles.bookBtn}
-                title={book.bookname}
-                onPress={() => openHadith(book.id)}
-            />);
+            const _book = [];
+            _book.push(
+                <Text
+                    key={`book_${book.id}`}
+                    style={styles.bookName}
+                >
+                    <FontAwesome name='book' size={18} color='yellow'/>
+                     {book[`bookname_${config.DEFAULT_LANG}`]}
+                </Text>
+                );
+            book.categories.forEach(category => {
+                _book.push(
+                    <Text
+                        key={`cat${category.id}`}
+                        style={styles.catName}
+                        onPress={() => openHadith(book.id, category.id)}
+                    >
+                        <MaterialIcons name='chevron-right' size={18} color='white'/>
+                            {category[`name_${config.DEFAULT_LANG}`]}
+                    </Text>
+                    );
+            })
+            bookList.push(_book);
         });
     }
 
     return (
-        <View>
+        <View style={styles.bookList}>
             {bookList}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    bookBtn: {
-        flexDirection: 'column',
-        width: '50%',
-        justifyContent: 'space-between'
+    bookList: {
+        paddingLeft: 40
+    },
+    bookName: {
+        fontSize: 20,
+        color: 'yellow'
+    },
+    catName: {
+        fontSize: 18,
+        color: 'teal',
+        paddingLeft: 10
     }
 });
 export default withNavigation(BooksNav);

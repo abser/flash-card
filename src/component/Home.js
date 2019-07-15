@@ -1,20 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Books from './Books';
-
-Home.navigationOptions = {
-    title: 'Home',
-    headerLeft: null
-  };
+import Header from './Header';
 
 function Home(props) {
   const {navigation} = props;
-  // navigation.openDrawer()     // Open ans show the drawer
   return (
     <SafeAreaView  style={styles.container}>
         <View style={styles.body}>
+          <Header/>
           <Books {...props} books={navigation.getParam('books', {})}/>
-          <Text> My Saved</Text>
        </View>
     </SafeAreaView>  
   );

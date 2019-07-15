@@ -145,10 +145,9 @@ const loadS3Data = async (key) => {
 
 /**
  * 
- * @param {String} dataType , eg. books, categories, hadiths etc 
  * @param {Strign} key , localstorage key name. 
  */
-const loadDataFromS3AndPersist = async (dataType, key) => {
+const loadDataFromS3AndPersist = async (key) => {
     try {
         const s3Data = await loadS3Data(key);    // Load data from S3
         const data = {};
@@ -161,4 +160,15 @@ const loadDataFromS3AndPersist = async (dataType, key) => {
     }
     
 }
-export { getBooks, getCategory, getDataFromStorage, loadDataFromS3AndPersist, removeDataFromStorage }
+
+const relaodAllData = async () => {
+    try {
+        const books = await loadDataFromS3AndPersist(config.BOOKS_FILE);
+        const hadiths = await loadDataFromS3AndPersist('1-1.json');
+        return {books, hadiths}
+    } catch(err) {
+        console.log("Reload Data Error.", err);
+    }
+    
+}
+export { getBooks, getCategory, getDataFromStorage, loadDataFromS3AndPersist, removeDataFromStorage, relaodAllData }
