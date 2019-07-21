@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   body: {
-    flex: 4
+    // flex: 4
   }
 });
 

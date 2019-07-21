@@ -1,16 +1,28 @@
-import React, {useReducer} from 'react';
-import { ScrollView,ImageBackground, StyleSheet, View, Text, Button} from 'react-native';
+import React, {useState, useEffect, useReducer} from 'react';
+import { ImageBackground, StyleSheet, View,ScrollView, Text, Button, SafeAreaView} from 'react-native';
 import {reducer} from '../reducer';
 import {config} from '../../config';
+import  AccecibilityMenu from './AccecibilityMenu';
+import { getDataFromStorage } from '../service/Api'
 
 const initialState = {index: 0};
 
 function CardNav (props) {
     const {hadiths} = props;
-    // const [index, setIndex] = useState(0);
+    const [language, setLanguage] = useState();
     const [state, dispatch] = useReducer(reducer, initialState);
-    function navigator () {    
-        return (
+
+
+    const currentLanguage = async() => {
+        let _language = await getDataFromStorage(config.LANGUAGE_KEY);
+        setLanguage(_language ? _language : config.DEFAULT_LANG)
+    }
+
+    useEffect(() => {
+        currentLanguage()
+    },[])
+    const cardNavigator = () => {    
+           return(
            <View style={styles.cardNav}>
                <Button
                     onPress={() => dispatch({type: 'prev', totalCount: hadiths.length})}
@@ -26,19 +38,27 @@ function CardNav (props) {
                     style={styles.nextButton}
                     accessibilityLabel="Learn more about this purple button"
                 />
-           </View> 
-        );
+           </View> );
     }
+
     return (
           <ImageBackground
-            source={require('../../assets/loading-screen.png')}
+            source={require('../../assets/backgrounds/nature-2.png')}
             style={styles.cardBackGround}>
-            <Text style={styles.cardText}>
-             {hadiths? hadiths[state.index][`hadith_${config.DEFAULT_LANG}`] : 'More hadith coming soon!'}
-           </Text>
-
-           {navigator()}
-        </ImageBackground>          
+                <AccecibilityMenu/>
+                <ScrollView 
+                centerContent={true}
+                >
+                    <Text style={styles.cardText}>
+                    {hadiths? hadiths[state.index][`hadith_ar`] : 'More hadith coming soon!'}
+                    </Text>
+                    <Text style={styles.cardText}>
+                    {hadiths? hadiths[state.index][`hadith_${language}`] : 'More hadith coming soon!'}
+                    </Text>
+                </ScrollView>
+                {cardNavigator()}
+           
+        </ImageBackground>        
     );
 }
 
@@ -49,20 +69,26 @@ const styles = StyleSheet.create({
     cardBackGround: {
         width: '100%', 
         height: '100%', 
-        flexDirection:'column',
-        justifyContent: 'space-around'
+    },
+    cardScrollView: {
+        justifyContent:'center'
     },
     cardText: {
-        padding: 2,
-        fontSize: 18 
+        backgroundColor:'#000',
+        opacity:0.8,
+        paddingLeft: 10,
+        paddingRight: 5,
+        paddingTop:20,
+        paddingBottom:20,
+        justifyContent:'center',
+        fontSize: 18,
+        color:'white'
       },
     cardNav: {
-        // flex:1,
         flexDirection: 'row',
         backgroundColor: 'lightblue',
-        alignItems:'stretch',
         justifyContent:'space-between',
-        marginTop: 20,
+        marginBottom:40
       },
     prevButton: {
         

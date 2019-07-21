@@ -1,25 +1,29 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
 import { getDataFromStorage } from '../service/Api'
 import CardNav from './CardNav';
 import Header from './Header';
 
 function Hadiths(props) {
-    const bookId = props.navigation.getParam('bookId');
+    const bookId = props.navigation.getParam('bookId', 1);
     const catId = props.navigation.getParam('catId', 1);
     const [hadiths, setHadiths] = useState(null);
     const key = `${bookId}-${catId}.json`;
 
-    useEffect(() => {
-        getDataFromStorage(key).then(defaultHadiths => {
+    const loadHadiths = () => {
+        getDataFromStorage(key).then(_hadiths => {
+            let defaultHadiths = JSON.parse(_hadiths);
             (defaultHadiths.data && defaultHadiths.data.length > 0) ? setHadiths(defaultHadiths.data) : setHadiths(null);
         }).catch(err => {
             console.log(err);
         })
-    }, [key]);
+    }
+    useEffect( () => {
+        loadHadiths()
+    }, []);
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.hadithPageContainer}>
             <Header />
             {hadiths !== null ?
                 <CardNav hadiths={hadiths} />
@@ -29,6 +33,11 @@ function Hadiths(props) {
 }
 
 const styles = StyleSheet.create({
+    hadithPageContainer: { 
+        flex:1,
+        // flexDirection:'column',
+        // justifyContent: 'space-between',
+    },
     card: {
         padding: 2,
         fontSize: 16

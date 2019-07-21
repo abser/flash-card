@@ -14,7 +14,7 @@ const SideMenu = (props) => {
     const loadBooks = async () => {
         try {
             const res = await getDataFromStorage(config.BOOKS_FILE);
-            setBooks(res);
+            setBooks(JSON.parse(res));
         } catch (err) {
             console.log(err)
         }
@@ -22,26 +22,30 @@ const SideMenu = (props) => {
 
     useEffect(() => {
         loadBooks();
-    },[]);
+    }, []);
 
     // console.log(books)
-    const navigateFromMenu = (routeName, data) => {
+    const navigateTo = (routeName, data={}) => {
         props.navigation.closeDrawer();
         props.navigation.navigate(routeName, data);
     }
     return (
         <ScrollView>
-            <SafeAreaView  style={styles.leftNavContainer}>
+            <SafeAreaView style={styles.leftNavContainer}>
+                <View style={styles.navItem}>
+                    <MaterialIcons name='language' size={32} color='green' />
+                    <Text style={styles.navItemText} onPress={() => navigateTo('Language')}>Change Language</Text>
+                </View>
                 <View style={styles.navItem}>
                     <MaterialCommunityIcons name='home-outline' size={32} color='orange' />
-                    <Text style={styles.navItemText} onPress={() => navigateFromMenu('Home', {books})}>Home</Text>
+                    <Text style={styles.navItemText} onPress={() => navigateTo('Home', { books })}>Home</Text>
                 </View>
                 <View style={styles.navItem}>
                     <MaterialCommunityIcons name='folder-outline' size={32} color='teal' />
                     <Text style={styles.navItemText} onPress={() => setShowBooks(!showBooks)}>Books</Text>
                 </View>
-                
-                {books && showBooks?
+
+                {books && showBooks ?
                     <BooksNav books={books} />
                     : null
                 }
@@ -52,23 +56,23 @@ const SideMenu = (props) => {
 
 const styles = StyleSheet.create({
     leftNavContainer: {
-      paddingLeft: 20,
-      paddingTop:80
+        paddingLeft: 20,
+        paddingTop: 80
     },
-    navItem:{
-        flexDirection:'row',
-        height:  50
+    navItem: {
+        flexDirection: 'row',
+        height: 50
     },
-    navItemText:{
+    navItemText: {
         fontSize: 20,
         color: '#fff',
-        fontFamily:'Helvetica Neue',  
-        paddingLeft:16 ,
-        margin:8
+        fontFamily: 'Helvetica Neue',
+        paddingLeft: 16,
+        margin: 8
     },
     navIcon: {
-        paddingRight:60
+        paddingRight: 60
     }
-  });
+});
 
 export default SideMenu;

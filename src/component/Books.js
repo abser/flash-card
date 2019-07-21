@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native'
+import React from 'react';
+import { StyleSheet, View, Button } from 'react-native'
 import { withNavigation } from 'react-navigation';
 import { config } from '../../config';
 
@@ -15,7 +15,7 @@ const Books = (props) => {
 
     if (books.data.length > 0) {
         // Create the book UI
-        console.log(books.data)
+        // console.log(books.data)
         books.data.forEach(book => {
             bookList.push(<Button
                 key={book.id}

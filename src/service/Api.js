@@ -93,7 +93,7 @@ const getDataFromStorage = async (key) => {
     try {
         const data = await AsyncStorage.getItem(key);
         if (data !== null) {
-            return JSON.parse(data);
+            return data;
         } else {
             return false;
         }
@@ -155,20 +155,29 @@ const loadDataFromS3AndPersist = async (key) => {
         data['expiry'] = getExpiry();
         await setDataToStorage(key, JSON.stringify(data));
         return data;
-    } catch(err) {
-        throw(err);
+    } catch (err) {
+        throw (err);
     }
-    
+
 }
 
 const relaodAllData = async () => {
     try {
         const books = await loadDataFromS3AndPersist(config.BOOKS_FILE);
         const hadiths = await loadDataFromS3AndPersist('1-1.json');
-        return {books, hadiths}
-    } catch(err) {
+        return { books, hadiths }
+    } catch (err) {
         console.log("Reload Data Error.", err);
     }
-    
 }
-export { getBooks, getCategory, getDataFromStorage, loadDataFromS3AndPersist, removeDataFromStorage, relaodAllData }
+
+
+export { 
+    getBooks,
+    getCategory,
+    getDataFromStorage, 
+    setDataToStorage, 
+    loadDataFromS3AndPersist,
+    removeDataFromStorage, 
+    relaodAllData
+ }

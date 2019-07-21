@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { withNavigation } from 'react-navigation';
@@ -39,7 +39,7 @@ const Header = (props) => {
 const styles = StyleSheet.create({
 
   header: {
-    // height:60,
+    height:40,
     backgroundColor: 'lightblue',
     color: 'red',
     flexDirection: 'row',

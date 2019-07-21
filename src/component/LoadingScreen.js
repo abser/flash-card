@@ -7,27 +7,26 @@ import { getDataFromStorage, removeDataFromStorage, relaodAllData } from '../ser
 const LoadingScreen = (props) => {
     const [msg, setMsg] = useState('Loading Hadiths ....');
     let books = false;
-    let hadiths = false;
-
-
     const loadData = async () => {
         try {
             // await removeDataFromStorage('books.json');
             // await removeDataFromStorage('categories.json');
             // await removeDataFromStorage('1-1.json');
 
-            books = await getDataFromStorage('books.json');
-            hadiths = await getDataFromStorage('1-1.json');
-
-            if (!(books && hadiths)) {
+            let _books = await getDataFromStorage('books.json');
+            let _hadiths = await getDataFromStorage('1-1.json');
+            
+            if (!(_books && _hadiths)) {
                 const { books, hadiths } = await relaodAllData();
             }
 
-            if (!books || !hadiths) {
+            if (!_books || !_hadiths) {
                 setMsg('Something went wrong! Please check your connectivity!');
             } else {
                 // setMsg('Loading complete 👏');
+                books = JSON.parse(_books);
                 props.navigation.navigate('Home', { books });
+                // props.navigation.navigate('Hadiths');
             }
 
         } catch (err) {
@@ -38,7 +37,7 @@ const LoadingScreen = (props) => {
     }
     useEffect(() => {
         loadData()
-    })
+    }, [])
 
     return (
         <ImageBackground

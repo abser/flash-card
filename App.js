@@ -4,13 +4,15 @@ import { MaterialIcons } from '@expo/vector-icons';
 import LoadingScreen from './src/component/LoadingScreen';
 import Home from './src/component/Home';
 import Hadiths from './src/component/Hadiths';
+import Language from './src/component/Language';
 import SideMenu from './src/component/SideMenu'
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
 const MainNavigator = createDrawerNavigator({
   LoadingScreen: { screen: LoadingScreen },
   Home: { screen: Home },
-  Hadiths: { screen: Hadiths }
+  Hadiths: { screen: Hadiths },
+  Language: {screen: Language}
 },
   {
     contentComponent: SideMenu,

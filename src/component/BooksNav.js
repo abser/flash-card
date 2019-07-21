@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native'
 import { withNavigation } from 'react-navigation';
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
@@ -8,7 +8,7 @@ const BooksNav = (props) => {
     const { books } = props;
     const bookList = [];
 
-
+    // console.log(books)
     const openHadith = (bookId, catId) => {
         console.log("onPressAction:bookid", bookId)
         props.navigation.closeDrawer();
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     catName: {
         fontSize: 18,
-        color: 'teal',
+        color: '#ddf542',
         paddingLeft: 10
     }
 });
