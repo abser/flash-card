@@ -1,26 +1,14 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import { ImageBackground, StyleSheet, View,ScrollView, Text, Button, SafeAreaView} from 'react-native';
 import {reducer} from '../reducer';
-import {config} from '../../config';
 import  AccecibilityMenu from './AccecibilityMenu';
-import { getDataFromStorage } from '../service/Api'
 
 const initialState = {index: 0};
 
 function CardNav (props) {
-    const {hadiths} = props;
-    const [language, setLanguage] = useState();
+    const {hadiths, language} = props;
     const [state, dispatch] = useReducer(reducer, initialState);
 
-
-    const currentLanguage = async() => {
-        let _language = await getDataFromStorage(config.LANGUAGE_KEY);
-        setLanguage(_language ? _language : config.DEFAULT_LANG)
-    }
-
-    useEffect(() => {
-        currentLanguage()
-    },[])
     const cardNavigator = () => {    
            return(
            <View style={styles.cardNav}>
@@ -40,7 +28,7 @@ function CardNav (props) {
                 />
            </View> );
     }
-
+    console.log(language)
     return (
           <ImageBackground
             source={require('../../assets/backgrounds/nature-2.png')}

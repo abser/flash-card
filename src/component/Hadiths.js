@@ -3,12 +3,16 @@ import { StyleSheet, View, SafeAreaView } from 'react-native';
 import { getDataFromStorage } from '../service/Api'
 import CardNav from './CardNav';
 import Header from './Header';
+import {config} from '../../config';
 
 function Hadiths(props) {
     const bookId = props.navigation.getParam('bookId', 1);
     const catId = props.navigation.getParam('catId', 1);
-    const [hadiths, setHadiths] = useState(null);
     const key = `${bookId}-${catId}.json`;
+    console.log(bookId,catId)
+
+    const [hadiths, setHadiths] = useState(null);
+    const [language, setLanguage] = useState('bn');
 
     const loadHadiths = () => {
         getDataFromStorage(key).then(_hadiths => {
@@ -18,15 +22,30 @@ function Hadiths(props) {
             console.log(err);
         })
     }
+
+    const currentLanguage = async() => {
+        try {
+            let _language = await getDataFromStorage(config.LANGUAGE_KEY);
+            console.log(_language)
+            setLanguage(_language ? _language : config.DEFAULT_LANG)
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        currentLanguage()
+    })
+
     useEffect( () => {
         loadHadiths()
-    }, []);
+    }, [bookId, catId]);
 
     return (
         <SafeAreaView style={styles.hadithPageContainer}>
             <Header />
             {hadiths !== null ?
-                <CardNav hadiths={hadiths} />
+                <CardNav hadiths={hadiths} language={language} />
                 : null}
         </SafeAreaView>
     );

@@ -10,8 +10,8 @@ const BooksNav = (props) => {
 
     // console.log(books)
     const openHadith = (bookId, catId) => {
-        console.log("onPressAction:bookid", bookId)
         props.navigation.closeDrawer();
+        // console.log("onPressAction:bookid", bookId, catId)
         props.navigation.navigate('Hadiths', { bookId, catId });
     }
 
