@@ -33,7 +33,7 @@ function CardNav (props) {
           <ImageBackground
             source={require('../../assets/backgrounds/nature-2.png')}
             style={styles.cardBackGround}>
-                <AccecibilityMenu/>
+                <AccecibilityMenu hadith={hadiths[state.index][`hadith_${language}`]}/>
                 <ScrollView 
                 centerContent={true}
                 >

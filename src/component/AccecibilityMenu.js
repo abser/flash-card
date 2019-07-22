@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Modal, Text, SafeAreaView } from 'react-native'
+import { StyleSheet, View, Modal, Text, SafeAreaView, Share } from 'react-native'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 
-const AccecibilityMenu = () => {
+const AccecibilityMenu = (props) => {
+    const hadith = props;
     const [showDotMenu, setShowDotMenu] = useState(false)
+    
     const dotMenuClicked = () => {
         console.log("dotMenuClicked:", showDotMenu)
         setShowDotMenu(!showDotMenu);
@@ -67,8 +69,28 @@ const AccecibilityMenu = () => {
         console.log("changeFontSize")
     }
 
-    const shareIt = () => {
+    const shareIt = async() => {
         console.log("shareIt")
+        try {
+            const result = await Share.share({
+                message: hadith,
+                title:'share title',
+                url:''
+            });
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                  // shared with activity type of result.activityType
+                  console.log('result.activityType', result.activityType)
+                } else {
+                  // shared
+                  console.log('shared!')
+                }
+              } else if (result.action === Share.dismissedAction) {
+                // dismissed
+              }
+        }catch(err) {
+            console.log(err);
+        }
     }
 
 
