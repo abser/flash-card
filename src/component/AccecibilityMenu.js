@@ -5,6 +5,7 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 const AccecibilityMenu = (props) => {
     const hadith = props;
+    console.log(hadith);
     const [showDotMenu, setShowDotMenu] = useState(false)
     
     const dotMenuClicked = () => {
@@ -73,9 +74,9 @@ const AccecibilityMenu = (props) => {
         console.log("shareIt")
         try {
             const result = await Share.share({
-                message: hadith,
-                title:'share title',
-                url:''
+                message: hadith.hadith,
+                title:'Hadith',
+                // url:''
             });
             if (result.action === Share.sharedAction) {
                 if (result.activityType) {
@@ -101,36 +102,40 @@ const AccecibilityMenu = (props) => {
                 name='dots-horizontal'
                 size={32}
                 color='white'
-                backgroundColor='rgba(255,255,255, 0)'
+                backgroundColor='rgba(0,0,0, 0.5)'
                 activeOpacity={0.2}
+                borderRadius={30}
                 underlayColor={'rgba(255,255,255, 0.3)'}
                 onPress={() => dotMenuClicked()}
             />
             <MaterialCommunityIcons.Button
                 name='image-filter-vintage'
                 size={32}
-                color='yellow'
-                backgroundColor='rgba(255,255,255, 0)'
+                color='white'
+                backgroundColor='rgba(0,0,0, 0.5)'
                 underlayColor={'rgba(255,255,255, 0.3)'}
                 activeOpacity={0.2}
+                borderRadius={30}
                 onPress={() => selecctBackground()}
             />
             <MaterialCommunityIcons.Button
                 name='format-size'
                 size={32}
-                color='yellow'
-                backgroundColor='rgba(255,255,255, 0)'
+                color='white'
+                backgroundColor='rgba(0,0,0, 0.5)'
                 underlayColor={'rgba(255,255,255, 0.3)'}
                 activeOpacity={0.2}
+                borderRadius={30}
                 onPress={() => changeFontSize()}
             />
             <MaterialCommunityIcons.Button
                 name='share-outline'
                 size={32}
-                color='blue'
-                backgroundColor='rgba(255,255,255, 0)'
+                color='white'
+                backgroundColor='rgba(0,0,0, 0.5)'
                 underlayColor={'rgba(255,255,255, 0.3)'}
                 activeOpacity={0.2}
+                borderRadius={30}
                 onPress={() => shareIt()}
             />
 
