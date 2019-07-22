@@ -18,6 +18,5 @@ node_modules/
 aws-exports.js
 awsconfiguration.json
 config.js
-yarn.lock
 *.log
 **/**/__recordings__
